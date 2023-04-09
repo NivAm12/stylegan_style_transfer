@@ -1,5 +1,3 @@
-# stylegan_style_transfer
- 
 # General information
 
 We used a pre-trained stylegan(Nvidia) on the WikiArt dataset.
@@ -7,9 +5,11 @@ We tried to manipulate the style of some images, using three different methods.
 In each method we used the same content and style images as inputs, to see the
 different impacts on the target images. We tested two different content and
 style image for those methods:
+![image](https://user-images.githubusercontent.com/49129250/230769846-6aa54c78-b535-418c-86e4-2589e572b56c.png)
 
 
-**Style Mixing**
+# Style Mixing
+
 In this method, we tried to achieve the style transfer using the style mixing
 mechanism. For each test, we used the w_content and the w_style, and used
 different levels from each of the w’s as the input to the stylegan synthesis
@@ -19,13 +19,19 @@ using different levels:
 Content image 1 and Style image 1
 
 ```
-content_w levels: 5 - 18, style_w levels: 1- 4
+content_w levels: 5-18, style_w levels: 1-4
 ```
+![Screenshot 2023-04-09 at 14 27 15](https://user-images.githubusercontent.com/49129250/230769866-c39770c0-41bc-4ead-9c26-9d1623433db7.png)
 
+```
+content_w levels: 8-18, 1-4, style_w levels: 5-7
+```
+![Screenshot 2023-04-09 at 14 31 48](https://user-images.githubusercontent.com/49129250/230770051-49f82d66-9483-40a8-9876-724e6584a5a5.png)
 
-   - content_w levels: 8 - 18, 1- 4, style_w levels: 5-
-- content_w levels:1 - 7, 9 - 18, style_w levels: 8-
-- content_w levels:1 - 11, 16 - 18, style_w levels: 12-
+```
+content_w levels:1 - 11, 16 - 18, style_w levels: 12-15
+```
+![Screenshot 2023-04-09 at 14 34 39](https://user-images.githubusercontent.com/49129250/230770147-7fcc927d-d9bf-4f5f-b833-d7af96689e34.png)
 
 
 As shown above, when we used the lower levels of w with the levels from
@@ -35,7 +41,8 @@ like the face of the woman. When we used the last levels from style_w, we saw
 that now the shape and structure are mainly formed from the content image, and
 the colors from the style image.
 
-**Optimization in W+**
+# Optimization in W+
+
 In this method, we tried to optimize W+. We initially allocated W+ as a repetition
 of 18 w’s of the content image. For the optimization, we used Adam optimizer
 with a learning rate of 0.01, with 500 iterations. The loss function uses content
@@ -48,12 +55,12 @@ and the target image, using all of the layers from the VGG network, and then
 compared the gram matrices of the style features maps and the gram matrices of
 the target features maps using Mse loss. Let's see the gradual(left to right) and
 final results of the optimization:
+![Screenshot 2023-04-09 at 14 34 57](https://user-images.githubusercontent.com/49129250/230770174-9dfe3f43-9115-44ce-a5f7-9ff2f50b0e77.png)
 
+![Screenshot 2023-04-09 at 14 36 16](https://user-images.githubusercontent.com/49129250/230770230-3ed00f05-4820-4c95-b717-2dcf0ff48b86.png)
 
-Image 1 loss Image 2 loss
+# Optimization in S
 
-
-**Optimization in S**
 In this method, we tried to optimize s. In order to get s space, which is achieved
 by an affine transformation on w, in each layer block in the stylegan synthesis
 network, we extract the affine functions from the network, use them on w_content
@@ -71,12 +78,11 @@ target image, using all of the layers from the VGG network, and then compared
 the gram matrices of the style features maps and the gram matrices of the target
 features maps using Mse loss. Let's see the gradual(left to right) and final results
 of the optimization:
+![Screenshot 2023-04-09 at 14 36 50](https://user-images.githubusercontent.com/49129250/230770250-609365fa-c312-40d9-9e65-5da520979972.png)
+![Screenshot 2023-04-09 at 14 37 03](https://user-images.githubusercontent.com/49129250/230770264-a1ec7f50-f46c-40dc-96a1-450fa5974c13.png)
 
 
-Image 1 loss Image 2 loss
-
-
-**Conclusions**
+# Conclusions
 
 Our goal was to modify the style of the content image to match
 the style image and to keep the large-scale content of the content image. In the
