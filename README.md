@@ -7,6 +7,9 @@ different impacts on the target images. We tested two different content and
 style image for those methods:
 ![image](https://user-images.githubusercontent.com/49129250/230769846-6aa54c78-b535-418c-86e4-2589e572b56c.png)
 
+<a target="_blank" href="https://colab.research.google.com/github/NivAm12/stylegan_style_transfer/blob/main/wikiart_stylegan.ipynb">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a> 
 
 # Style Mixing
 
